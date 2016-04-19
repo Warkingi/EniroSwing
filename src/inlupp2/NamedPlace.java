@@ -18,6 +18,7 @@ public class NamedPlace extends JComponent {
 	protected Position pos;
 	
 	private boolean visible = true;
+	private boolean selected = false;
 	
 	public enum State {
 		FOLDED,
@@ -38,14 +39,15 @@ public class NamedPlace extends JComponent {
 		super.paintComponent(g);
 		
 		if (getVisible()) {
-			switch(state) {
-			case FOLDED:
+			
+			if (state == State.FOLDED) {
+				if (getSelected()) paintSelectedSquare(g);
+				
 				paintFolded(g);
-				break;
-			case UNFOLDED:
+			} else if (state == State.UNFOLDED) {
 				paintUnfolded(g);
-				break;
 			}
+			
 		}
 	}
 	
@@ -73,12 +75,19 @@ public class NamedPlace extends JComponent {
 		g2d.drawString(getName(), pos.getX() - rectWidth/2 + fontSize , pos.getY() - rectHeight/2 + fontSize);
 	}
 	
+	public void paintSelectedSquare(Graphics g) {
+		g.setColor(Color.RED);
+		g.drawRect(pos.getX() - SIZE, pos.getY() - SIZE, SIZE * 2, SIZE);
+	}
+	
 	public String getName() { return name; }
 	public Position getPosition() { return pos; }
 	public Category getCategory() { return category; }
 	public void setName(String name) { this.name = name; }
+	public boolean getVisible() { return visible; }
+	public boolean getSelected() { return selected; }
 	public void setPosition(Position pos) { this.pos = pos; }
 	public void setCategory(Category category) { this.category = category; }
 	public void setVisibile(boolean visible) { this.visible = visible; }
-	public boolean getVisible() { return visible; }
+	public void setSelected(boolean selected) { this.selected = selected; }
 }
