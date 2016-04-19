@@ -9,18 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SubMenu extends JPanel {
+	private JLabel newLabel = new JLabel("New: ");
+	private JComboBox newCombo = new JComboBox(new String[]{"Named", "Described"});
+	private JButton search = new JButton("Search");
+	private JButton hide = new JButton("Hide");
+	private JButton remove = new JButton("Remove");
+	private JButton whatIsHere = new JButton("What is here?");
+	
 	SubMenu() {
 		prepareGUI();
 	}
 	
 	private void prepareGUI() {
-		JLabel newLabel = new JLabel("New: ");
-		JComboBox newCombo = new JComboBox(new String[]{"Named", "Described"});
-		JButton search = new JButton("Search");
-		JButton hide = new JButton("Hide");
-		JButton remove = new JButton("Remove");
-		JButton whatIsHere = new JButton("What is here?");
-		
 		add(newLabel);
 		add(newCombo);
 		add(search);
@@ -28,4 +28,12 @@ public class SubMenu extends JPanel {
 		add(remove);
 		add(whatIsHere);
 	}
+	
+	public JLabel getNewLabel() { return newLabel; }
+	public JComboBox getNewCombo() { return newCombo; }
+	public JButton getSearch() { return search; }
+	public JButton getHide() { return hide; }
+	public JButton getRemove() { return remove; }
+	public JButton getWhatIsHere() { return whatIsHere; }
+	
 }
