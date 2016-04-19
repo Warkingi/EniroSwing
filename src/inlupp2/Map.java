@@ -5,10 +5,24 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import javax.swing.*;
 
 public class Map extends JLabel {
+	private HashMap<Position, NamedPlace> places = new HashMap<Position, NamedPlace>();
+	
+	Map() {
+		Category busses = new Category("Busses", Color.CYAN);
+		
+		NamedPlace place = new NamedPlace("Hej", new Position(0, 0), busses);
+		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0), busses);
+		
+		places.put(place.getPosition(), place);
+		places.put(place2.getPosition(), place2);
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -24,15 +38,14 @@ public class Map extends JLabel {
 	}
 	
 	private void paintPlaces(Graphics g) {
-		Category busses = new Category("Busses", Color.CYAN);
+		Iterator<Entry<Position, NamedPlace>> it = places.entrySet().iterator();
 		
-		NamedPlace place = new NamedPlace("Hej", new Position(0, 0), busses);
-		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0), busses);
-		
-		place.setBounds(0, 0, place.SIZE, place.SIZE);
-		place2.setBounds(0, 0, place2.SIZE, place2.SIZE);
-		
-		place2.paintComponent(g);
-		place.paintComponent(g);
+		while (it.hasNext()) {
+			HashMap.Entry pair = (HashMap.Entry) it.next();
+			
+			NamedPlace place = (NamedPlace) pair.getValue();
+			place.setBounds(0, 0, place.SIZE, place.SIZE);
+			place.paintComponent(g);
+		}
 	}
 }
