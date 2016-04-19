@@ -1,5 +1,6 @@
 package inlupp2;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -51,6 +52,11 @@ public class LoadPlacesListener implements ActionListener {
 				int x = Integer.parseInt(data[2]);
 				int y = Integer.parseInt(data[3]);
 				String name = data[4];
+				
+				if (type.equalsIgnoreCase("Named")) {
+					NamedPlace place = new NamedPlace(name, new Position(x, y), new Category("foo", Color.BLUE));
+					//WIP
+				} 
 			}
 			
 			br.close();

@@ -13,6 +13,7 @@ import javax.swing.*;
 
 public class Map extends JLabel {
 	private HashMap<Position, NamedPlace> places = new HashMap<Position, NamedPlace>();
+	private HashMap<String, Category> categories = new HashMap<String, Category>();
 	
 	Map() {
 		Category busses = new Category("Busses", Color.CYAN);
@@ -35,6 +36,14 @@ public class Map extends JLabel {
 	public void loadMap(String path) {
 		ImageIcon mapIcon = new ImageIcon(path);
 		this.setIcon(mapIcon);
+	}
+	
+	public void addCategory(Category category) {
+		categories.put(category.getName(), category);
+	}
+	
+	public void addPlace(NamedPlace place) {
+		places.put(place.getPosition(), place);
 	}
 	
 	private void paintPlaces(Graphics g) {
