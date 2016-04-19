@@ -16,13 +16,7 @@ public class Map extends JLabel {
 	private HashMap<String, Category> categories = new HashMap<String, Category>();
 	
 	Map() {
-		Category busses = new Category("Busses", Color.CYAN);
-		
-		NamedPlace place = new NamedPlace("Foo", new Position(0, 0), busses);
-		NamedPlace place2 = new NamedPlace("Bar", new Position(30, 0), busses);
-		
-		places.put(place.getPosition(), place);
-		places.put(place2.getPosition(), place2);
+		prepareCategories();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -46,6 +40,10 @@ public class Map extends JLabel {
 		places.put(place.getPosition(), place);
 	}
 	
+	public Category getCategory(String name) {
+		return categories.get(name);
+	}
+	
 	private void paintPlaces(Graphics g) {
 		Iterator<Entry<Position, NamedPlace>> it = places.entrySet().iterator();
 		
@@ -56,5 +54,12 @@ public class Map extends JLabel {
 			place.setBounds(0, 0, place.SIZE, place.SIZE);
 			place.paintComponent(g);
 		}
+	}
+	
+	private void prepareCategories() {
+		categories.put("Buss", new Category("Buss", Color.BLUE));
+		categories.put("None", new Category("None", Color.BLACK));
+		categories.put("Tunnelbana", new Category("Tunnelbana", Color.GREEN));
+		categories.put("Tåg", new Category("Tåg", Color.YELLOW));
 	}
 }

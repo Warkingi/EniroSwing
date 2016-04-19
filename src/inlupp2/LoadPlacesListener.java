@@ -5,9 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -39,8 +41,9 @@ public class LoadPlacesListener implements ActionListener {
 	
 	private List<String> createPlaces(String path) {
 		try {
-			FileReader fr = new FileReader(path);
-			BufferedReader br = new BufferedReader(fr);
+	        BufferedReader br = new BufferedReader(
+	                new InputStreamReader(
+	                           new FileInputStream(path), "UTF8"));
 			
 			String line;
 			
@@ -48,19 +51,23 @@ public class LoadPlacesListener implements ActionListener {
 				String[] data = line.split(",");
 				
 				String type = data[0];
-				String category = data[1];
+				String categoryName = data[1];
 				int x = Integer.parseInt(data[2]);
 				int y = Integer.parseInt(data[3]);
 				String name = data[4];
 				
-				if (type.equalsIgnoreCase("Named")) {
-					NamedPlace place = new NamedPlace(name, new Position(x, y), new Category("foo", Color.BLUE));
-					//WIP
+				Category category = map.getCategory(categoryName);
+				
+				if (category == null) {
+					System.out.println(categoryName + " IS NULL");
+				}
+				
+				if (type.equalsIgnoreCase("Named") && categoryName != "null") { //Need to figure out UTF-8 char encoding reading from file
+					map.addPlace(new NamedPlace(name, new Position(x, y), category));
 				} 
 			}
 			
 			br.close();
-			fr.close();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
