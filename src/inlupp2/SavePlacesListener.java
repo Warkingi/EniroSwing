@@ -3,6 +3,7 @@ package inlupp2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -15,13 +16,22 @@ import javax.swing.*;
 
 public class SavePlacesListener implements ActionListener {
 	private Map map;
+	private JFileChooser fileChooser = new JFileChooser(".");
 	
 	SavePlacesListener(Map map) { this.map = map; }
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			FileWriter outFile = new FileWriter("temp.places");
+			String filePath = null;
+			
+			int userSelection = fileChooser.showSaveDialog(null);
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				File file = fileChooser.getSelectedFile();
+				filePath = file.getAbsolutePath();
+			}
+			
+			FileWriter outFile = new FileWriter(filePath);
 			PrintWriter out = new PrintWriter(outFile);
 			
 			HashMap<Position, NamedPlace> places = map.getPlaces();
