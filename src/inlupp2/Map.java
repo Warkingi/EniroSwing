@@ -32,17 +32,11 @@ public class Map extends JLabel {
 		this.setIcon(mapIcon);
 	}
 	
-	public void addCategory(Category category) {
-		categories.put(category.getName(), category);
-	}
-	
-	public void addPlace(NamedPlace place) {
-		places.put(place.getPosition(), place);
-	}
-	
-	public Category getCategory(String name) {
-		return categories.get(name);
-	}
+	public void addCategory(Category category) { categories.put(category.getName(), category);}
+	public void addPlace(NamedPlace place) { places.put(place.getPosition(), place); }
+	public Category getCategory(String name) { return categories.get(name); }
+	public HashMap<String, Category> getCategories() { return categories; }
+	public HashMap<Position, NamedPlace> getPlaces() { return places; }
 	
 	private void paintPlaces(Graphics g) {
 		Iterator<Entry<Position, NamedPlace>> it = places.entrySet().iterator();
