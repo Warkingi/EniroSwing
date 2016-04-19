@@ -29,7 +29,7 @@ public class NamedPlace extends JComponent {
 		
 		Graphics2D g2d = (Graphics2D) g.create();
 		
-		Polygon trianglePol = new Polygon(new int[]{pos.getX() + SIZE, pos.getX() + SIZE * 2, pos.getX()}, new int[]{pos.getY(), pos.getY() + SIZE * 2, pos.getY() + SIZE * 2}, 3);
+		Polygon trianglePol = new Polygon(new int[]{pos.getX(), pos.getX() + SIZE, pos.getX() - SIZE}, new int[] {pos.getY(), pos.getY() - SIZE, pos.getY() - SIZE}, 3);
 		g2d.setColor(category.getColor());
 		g2d.fill(trianglePol);
 	}
