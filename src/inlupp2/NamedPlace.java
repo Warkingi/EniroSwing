@@ -11,9 +11,9 @@ import javax.swing.*;
 
 public class NamedPlace extends JComponent {
 	private String name;
-	private Position pos;
 	private Category category;
-	private State state;
+	protected State state;
+	protected Position pos;
 	
 	public static final int SIZE = 15;
 	
@@ -59,7 +59,7 @@ public class NamedPlace extends JComponent {
 		g2d.fill(trianglePol);
 	}
 	
-	private void paintUnfolded(Graphics g) {
+	public void paintUnfolded(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g.create();
 		
 		int rectWidth = 100;
