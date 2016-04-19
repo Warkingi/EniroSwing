@@ -24,8 +24,10 @@ public class Map extends JLabel {
 	}
 	
 	private void paintPlaces(Graphics g) {
-		NamedPlace place = new NamedPlace("Hej", new Position(0, 0));
-		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0));
+		Category busses = new Category("Busses", Color.CYAN);
+		
+		NamedPlace place = new NamedPlace("Hej", new Position(0, 0), busses);
+		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0), busses);
 		
 		place.setBounds(0, 0, place.SIZE, place.SIZE);
 		place2.setBounds(0, 0, place2.SIZE, place2.SIZE);
