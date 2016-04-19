@@ -14,14 +14,14 @@ public class Map extends JLabel {
 		super.paintComponent(g);
 		
 		if (this.getIcon() != null) {
-			Graphics2D g2d = (Graphics2D) g.create();
+			NamedPlace place = new NamedPlace("Hej", new Position(0, 0));
+			NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0));
 			
-			int size = 15;
-			Position pos = new Position(0, 0);
+			place.setBounds(0, 0, place.SIZE, place.SIZE);
+			place2.setBounds(0, 0, place2.SIZE, place2.SIZE);
 			
-			Polygon trianglePol = new Polygon(new int[]{pos.getX() + size, pos.getX() + size * 2, pos.getX()}, new int[]{pos.getY(), pos.getY() + size * 2, pos.getY() + size * 2}, 3);
-			g2d.setColor(Color.BLUE);
-			g2d.fill(trianglePol);
+			place2.paintComponent(g);
+			place.paintComponent(g);
 		}
 	}
 	
