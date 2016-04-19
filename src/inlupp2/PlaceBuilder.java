@@ -13,13 +13,7 @@ public class PlaceBuilder extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
 		Map clickedMap = (Map) e.getSource();
 		if (!map.equals(clickedMap)) return;
-		
-		String categoryName = (String) categoryMenu.getOptionList().getSelectedValue();
-		Category category = map.getCategory(categoryName);
-		//If no category selection has been made cancel action
-		if (category == null) return;
-		
-		map.addPlace(new NamedPlace("Foo", new Position(e.getX(), e.getY()), category));
+		map.addPlace(new NamedPlace("Foo", new Position(e.getX(), e.getY()), getSelectedCategory()));
 		map.repaint();
 	}
 	
@@ -30,6 +24,10 @@ public class PlaceBuilder extends MouseAdapter {
 		map.setCursor(c);
 	}
 	
-	private Category getCategory() { return null; }
+	private Category getSelectedCategory() { 
+		String categoryName = (String) categoryMenu.getOptionList().getSelectedValue();
+		return map.getCategory(categoryName);
+	}
+	
 	public void setCategoryMenu(CategoryMenu categoryMenu) { this.categoryMenu = categoryMenu; }
 }
