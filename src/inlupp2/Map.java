@@ -10,6 +10,7 @@ public class Map extends JPanel {
 	
 	Map() {
 		add(map);
+		add(new NamedPlace("foo", new Position(0, 0)));
 	}
 	
 	public void loadMap(String path) {
