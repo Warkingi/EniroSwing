@@ -1,6 +1,7 @@
 package inlupp2;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,6 +15,8 @@ import javax.swing.*;
 public class Map extends JLabel {
 	private HashMap<Position, NamedPlace> places = new HashMap<Position, NamedPlace>();
 	private HashMap<String, Category> categories = new HashMap<String, Category>();
+	
+	private boolean buildMode = false;
 	
 	Map() {
 		prepareCategories();
@@ -32,11 +35,32 @@ public class Map extends JLabel {
 		this.setIcon(mapIcon);
 	}
 	
+	public void crossCursor() {
+		Cursor c = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
+		setCursor(c);
+	}
+	
+	public void defaultCursor() {
+		Cursor c = Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR);
+		setCursor(c);
+	}
+	
+	public void setBuildMode(boolean buildMode) { 
+		this.buildMode = buildMode; 
+		
+		if (buildMode) {
+			crossCursor();
+		} else {
+			defaultCursor();
+		}
+	}
+	
 	public void addCategory(Category category) { categories.put(category.getName(), category);}
 	public void addPlace(NamedPlace place) { places.put(place.getPosition(), place); }
 	public Category getCategory(String name) { return categories.get(name); }
 	public HashMap<String, Category> getCategories() { return categories; }
 	public HashMap<Position, NamedPlace> getPlaces() { return places; }
+	public boolean getBuildMode() { return buildMode; }
 	
 	private void paintPlaces(Graphics g) {
 		Iterator<Entry<Position, NamedPlace>> it = places.entrySet().iterator();

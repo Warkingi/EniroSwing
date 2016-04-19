@@ -23,7 +23,6 @@ public class NewPlaceComboListener implements ActionListener {
 		//If no category selection has been made cancel action
 		if (category == null) return;
 		
-		PlaceBuilder builder = new PlaceBuilder(map, null, null);
-		builder.crossCursor();
+		map.setBuildMode(true);
 	}
 }

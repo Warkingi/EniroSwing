@@ -22,7 +22,7 @@ public class PlaceBuilder extends MouseAdapter {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1) { //Left click
+		if (e.getButton() == MouseEvent.BUTTON1 && map.getBuildMode()) { //Left click
 			Map clickedMap = (Map) e.getSource();
 			if (!map.equals(clickedMap)) return;
 			
@@ -30,16 +30,15 @@ public class PlaceBuilder extends MouseAdapter {
 			
 			if (type == "Named") {
 				newNamedPlace(e.getX(), e.getY());
+				map.setBuildMode(false);
 			} else if (type == "Described") {
 				newDescribedPlace(e.getX(), e.getY());
+				map.setBuildMode(false);
 			}
 		}
 	}
 	
-	public void crossCursor() {
-		Cursor c = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
-		map.setCursor(c);
-	}
+
 	
 	private void newNamedPlace(int x, int y) {
 		JPanel form = new JPanel();
