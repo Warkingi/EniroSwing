@@ -13,7 +13,7 @@ public class Application extends JFrame {
 	private SubMenu subMenu = new SubMenu();
 	private CategoryMenu categoryMenu = new CategoryMenu(); 
 	
-	private JScrollPane mapScroll = new JScrollPane(map);
+	private JScrollPane mapScroll;
 	
 	Application() {
 		prepareGUI();
@@ -26,6 +26,11 @@ public class Application extends JFrame {
 	private void prepareGUI() {
 		setLayout(new BorderLayout());
 		setJMenuBar(menu.getMenuBar());
+		
+		JPanel mapPanel = new JPanel();
+		mapPanel.setLayout(new BorderLayout());
+		mapPanel.add(map, BorderLayout.NORTH);
+		mapScroll = new JScrollPane(mapPanel);
 		
 		add(subMenu, BorderLayout.NORTH);
 		add(mapScroll, BorderLayout.CENTER);
