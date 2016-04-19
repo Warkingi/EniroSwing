@@ -10,12 +10,14 @@ import java.awt.Rectangle;
 import javax.swing.*;
 
 public class NamedPlace extends JComponent {
+	public static final int SIZE = 15;
+	
 	private String name;
 	private Category category;
 	protected State state;
 	protected Position pos;
 	
-	public static final int SIZE = 15;
+	private boolean visible = true;
 	
 	public enum State {
 		FOLDED,
@@ -35,24 +37,20 @@ public class NamedPlace extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		switch(state) {
-		case FOLDED:
-			paintFolded(g);
-			break;
-		case UNFOLDED:
-			paintUnfolded(g);
-			break;
+		if (getVisible()) {
+			switch(state) {
+			case FOLDED:
+				paintFolded(g);
+				break;
+			case UNFOLDED:
+				paintUnfolded(g);
+				break;
+			}
 		}
 	}
 	
-	public String getName() { return name; }
-	public Position getPosition() { return pos; }
-	public Category getCategory() { return category; }
-	public void setName(String name) { this.name = name; }
-	public void setPosition(Position pos) { this.pos = pos; }
-	public void setCategory(Category category) { this.category = category; }
 	
-	private void paintFolded(Graphics g) {
+	public void paintFolded(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g.create();
 		Polygon trianglePol = new Polygon(new int[]{pos.getX(), pos.getX() + SIZE, pos.getX() - SIZE}, new int[] {pos.getY(), pos.getY() - SIZE, pos.getY() - SIZE}, 3);
 		g2d.setColor(category.getColor());
@@ -74,4 +72,13 @@ public class NamedPlace extends JComponent {
 		g2d.setColor(Color.BLACK);
 		g2d.drawString(getName(), pos.getX() - rectWidth/2 + fontSize , pos.getY() - rectHeight/2 + fontSize);
 	}
+	
+	public String getName() { return name; }
+	public Position getPosition() { return pos; }
+	public Category getCategory() { return category; }
+	public void setName(String name) { this.name = name; }
+	public void setPosition(Position pos) { this.pos = pos; }
+	public void setCategory(Category category) { this.category = category; }
+	public void setVisibile(boolean visible) { this.visible = visible; }
+	public boolean getVisible() { return visible; }
 }
