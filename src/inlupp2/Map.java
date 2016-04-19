@@ -17,8 +17,8 @@ public class Map extends JLabel {
 	Map() {
 		Category busses = new Category("Busses", Color.CYAN);
 		
-		NamedPlace place = new NamedPlace("Hej", new Position(0, 0), busses);
-		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0), busses);
+		NamedPlace place = new NamedPlace("Foo", new Position(0, 0), busses);
+		NamedPlace place2 = new NamedPlace("Bar", new Position(30, 0), busses);
 		
 		places.put(place.getPosition(), place);
 		places.put(place2.getPosition(), place2);

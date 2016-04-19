@@ -39,5 +39,6 @@ public class Application extends JFrame {
 	
 	private void prepareListeners() {
 		menu.getNewMap().addActionListener(new NewMapListener(map));
+		menu.getLoadPlaces().addActionListener(new LoadPlacesListener(map));
 	}
 }
