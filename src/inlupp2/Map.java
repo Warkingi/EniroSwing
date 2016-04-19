@@ -53,7 +53,7 @@ public class Map extends JLabel {
 	private void prepareCategories() {
 		categories.put("Buss", new Category("Buss", Color.BLUE));
 		categories.put("None", new Category("None", Color.BLACK));
-		categories.put("Tunnelbana", new Category("Tunnelbana", Color.GREEN));
-		categories.put("Tåg", new Category("Tåg", Color.YELLOW));
+		categories.put("Tunnelbana", new Category("Tunnelbana", Color.BLUE));
+		categories.put("Tåg", new Category("Tåg", Color.GREEN));
 	}
 }
