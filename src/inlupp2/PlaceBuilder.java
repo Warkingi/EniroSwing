@@ -82,7 +82,11 @@ public class PlaceBuilder extends MouseAdapter {
 	
 	private Category getSelectedCategory() { 
 		String categoryName = (String) categoryMenu.getOptionList().getSelectedValue();
-		return map.getCategory(categoryName);
+		Category category = map.getCategory(categoryName);
+		
+		if (category == null) category = map.getCategory("None");
+		
+		return category;
 	}
 	
 	public void setCategoryMenu(CategoryMenu categoryMenu) { this.categoryMenu = categoryMenu; }

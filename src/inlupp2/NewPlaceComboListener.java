@@ -18,11 +18,6 @@ public class NewPlaceComboListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String categoryName = (String) categoryMenu.getOptionList().getSelectedValue();
-		Category category = map.getCategory(categoryName);
-		//If no category selection has been made cancel action
-		if (category == null) return;
-		
 		map.setBuildMode(true);
 	}
 }
