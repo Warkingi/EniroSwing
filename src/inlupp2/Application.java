@@ -43,6 +43,6 @@ public class Application extends JFrame {
 		menu.getSave().addActionListener(new SavePlacesListener(map));
 		menu.getExit().addActionListener(new ExitListener(this));
 		subMenu.getNewCombo().addActionListener(new NewPlaceComboListener(map, subMenu, categoryMenu));
-		map.addMouseListener(new PlaceBuilder(map, categoryMenu));
+		map.addMouseListener(new PlaceBuilder(map, subMenu, categoryMenu));
 	}
 }

@@ -18,14 +18,12 @@ public class NewPlaceComboListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String type = (String)subMenu.getNewCombo().getSelectedItem();
-		
 		String categoryName = (String) categoryMenu.getOptionList().getSelectedValue();
 		Category category = map.getCategory(categoryName);
 		//If no category selection has been made cancel action
 		if (category == null) return;
 		
-		PlaceBuilder builder = new PlaceBuilder(map, null);
-		builder.newPlace();
+		PlaceBuilder builder = new PlaceBuilder(map, null, null);
+		builder.crossCursor();
 	}
 }
