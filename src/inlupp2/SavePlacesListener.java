@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -19,8 +21,8 @@ public class SavePlacesListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		try {
-			FileOutputStream outFile = new FileOutputStream("file.dat");
-			DataOutputStream out = new DataOutputStream(outFile);
+			FileWriter outFile = new FileWriter("temp.places");
+			PrintWriter out = new PrintWriter(outFile);
 			
 			HashMap<Position, NamedPlace> places = map.getPlaces();
 			Iterator it = places.entrySet().iterator();
@@ -30,9 +32,8 @@ public class SavePlacesListener implements ActionListener {
 				NamedPlace place = (NamedPlace) pair.getValue();
 				
 				String categoryName = place.getCategory().getName();
-				
-				String data = String.format("Named,%s,%d,%d,%s\n", categoryName, place.getPosition().getX(), place.getPosition().getY(), place.getName());
-				out.writeChars(data);
+				String data = String.format("Named,%s,%d,%d,%s", categoryName, place.getPosition().getX(), place.getPosition().getY(), place.getName());
+				out.println(data);
 			}
 			
 			out.close();
