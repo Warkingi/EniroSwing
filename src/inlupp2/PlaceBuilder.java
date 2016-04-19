@@ -11,10 +11,12 @@ public class PlaceBuilder extends MouseAdapter {
 	PlaceBuilder(Map map, CategoryMenu categoryMenu) { this.map = map; this.categoryMenu = categoryMenu;}
 	
 	public void mousePressed(MouseEvent e) {
-		Map clickedMap = (Map) e.getSource();
-		if (!map.equals(clickedMap)) return;
-		map.addPlace(new NamedPlace("Foo", new Position(e.getX(), e.getY()), getSelectedCategory()));
-		map.repaint();
+		if (e.getButton() == MouseEvent.BUTTON1) { //Left click
+			Map clickedMap = (Map) e.getSource();
+			if (!map.equals(clickedMap)) return;
+			map.addPlace(new NamedPlace("Foo", new Position(e.getX(), e.getY()), getSelectedCategory()));
+			map.repaint();
+		}
 	}
 	
 	public void newPlace() { crossCursor(); }
