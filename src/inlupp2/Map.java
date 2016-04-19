@@ -13,20 +13,24 @@ public class Map extends JLabel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		if (this.getIcon() != null) {
-			NamedPlace place = new NamedPlace("Hej", new Position(0, 0));
-			NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0));
-			
-			place.setBounds(0, 0, place.SIZE, place.SIZE);
-			place2.setBounds(0, 0, place2.SIZE, place2.SIZE);
-			
-			place2.paintComponent(g);
-			place.paintComponent(g);
+		if (this.getIcon() != null) { //If we have loaded a map
+			paintPlaces(g);
 		}
 	}
 	
 	public void loadMap(String path) {
 		ImageIcon mapIcon = new ImageIcon(path);
 		this.setIcon(mapIcon);
+	}
+	
+	private void paintPlaces(Graphics g) {
+		NamedPlace place = new NamedPlace("Hej", new Position(0, 0));
+		NamedPlace place2 = new NamedPlace("Hej", new Position(30, 0));
+		
+		place.setBounds(0, 0, place.SIZE, place.SIZE);
+		place2.setBounds(0, 0, place2.SIZE, place2.SIZE);
+		
+		place2.paintComponent(g);
+		place.paintComponent(g);
 	}
 }
